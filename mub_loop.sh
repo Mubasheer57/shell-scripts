@@ -18,6 +18,17 @@ then
     exit 1 #other than 0
 fi
 
+for package in $@
+do
+    dnf list installed $package
+    if [ $? -ne 0 ]
+    then 
+        dnf remove $package -y
+        VALIDATE $? "Removing $package"
+    else
+        echo "$package is removed"
+    fi
+done
 
 for package in $@
 do
