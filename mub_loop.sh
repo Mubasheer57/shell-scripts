@@ -21,7 +21,7 @@ fi
 
 for package in $@
 do
-    dnf list installed package
+    dnf list installed $package
     if [ $? -ne 0]
     then 
         dnf install $package -y
@@ -29,5 +29,5 @@ do
     else
         echo "$package is already INSTALLED"
     fi
-
+done
 
