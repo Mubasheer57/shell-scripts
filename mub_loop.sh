@@ -3,7 +3,7 @@
 USERID=$(id -u)
 
 VALIDATE(){
-    if [ $1 -ne 1 ]
+    if [ $1 -ne 0 ]
     then
         echo "$2 ... FAILURE"
         exit 1
@@ -21,12 +21,12 @@ fi
 for package in $@
 do
     dnf list installed $package
-    if [ $? -ne 0 ]
+    if [ $? -eq 0 ]
     then 
         dnf remove $package -y
         VALIDATE $? "Removing $package"
     else
-        echo "$package is removed"
+        echo "$package is not installed"
     fi
 done
 
