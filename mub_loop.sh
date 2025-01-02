@@ -22,7 +22,7 @@ fi
 for package in $@
 do
     dnf list installed $package
-    if [ $? -ne 0]
+    if [ $? -ne 0 ]
     then 
         dnf install $package -y
         VALIDATE $? "Installing $package"
